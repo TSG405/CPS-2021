@@ -3,7 +3,7 @@ def GivingSlots(SlotList,NumberOfVacantSlots):
     fh = open('QRcode_result.txt')                                                                 # Accessing QR-Response Text!
     for i in fh:
         l = i.split('-')
-    carNumber = l[-1]
+    carNumber = l[-3]
     fh.close()
 
     # Slot Registration ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ def GivingSlots(SlotList,NumberOfVacantSlots):
 
 # Driver Code ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    GivingSlots()
+    GivingSlots([],50)
     
  
 '''

@@ -1,5 +1,7 @@
 import sqlite3
 from datetime import datetime
+
+
 def databaseEntry():
     # Opening scanned File -----------------------------------------------------------------------------------------------------------------
     fh = open('QRcode_result.txt')
@@ -14,6 +16,8 @@ def databaseEntry():
             fn = WorkingList[1]
             ln = WorkingList[2]
             cn = WorkingList[3]
+            pwd = WorkingList[4]
+            ph = WorkingList[5]
 
             # Connecting to Database Server -------------------------------------------------------------------------------------------------
             conn = sqlite3.connect("CPS.sqlite")
@@ -23,11 +27,11 @@ def databaseEntry():
 
             now = datetime.now()
             date,time = now.strftime("%d/%m/%Y %H:%M:%S").split(' ')
-
+            etime ='NULL'
             # Registering into Database -----------------------------------------------------------------------------------------------------
             if row is None:
                 try:
-                    cur.execute('''INSERT INTO CPSDATABASE VALUES(?,?,?,?,?)''', (fn, ln, cn, date, time))
+                    cur.execute('''INSERT INTO CPSDATABASE VALUES(?,?,?,?,?,?,?,?)''', (fn, ln, cn, date, time, etime, pwd, ph))
                 except:
                     pass
             conn.commit()

@@ -1,1 +1,4 @@
-Recognized QRode: C*S-*****-********-WB******
+Recognized QRode: C*S-*****-********-WB******-*****(MD5-Encrypted)*****-916325****
+
+
+FORMAT:  (CPS_CODE)-(FIRST_NAME)-(LAST_NAME)-(CAR_NUMBER)-(MD5_Encrypted_PWD)-(PHONE_NUMBER)

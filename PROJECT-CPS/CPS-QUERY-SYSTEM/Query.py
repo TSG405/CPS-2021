@@ -54,16 +54,16 @@ def submit1():
     # PWD Validation ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     if kk==orgpwd:
         status.set("         MATCHED !")
+
+        # SLOT Display ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        try:
+            slot.set(SlotList.index(entered_car_number)+1)
+        except:
+            slot.set("        NO CAR found!")      
     else:
         status.set("    INCORRECT PWD!")
 
-    # SLOT Display ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    try:
-        slot.set(SlotList.index(entered_car_number)+1)
-    except:
-        slot.set("        NO CAR found!")
     
-
 # FRAME 1 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 frame=Frame(root,bd=5,relief=RIDGE,bg="light Green")
 frame.place(x=30,y=10,height=100,width=500)
@@ -73,6 +73,7 @@ Label(frame,text='       ',bg="light Green").grid(row=1,column=3)
 car_number=StringVar()
 Entry(frame,textvariable=car_number).grid(row=1,column=1)
 Button(frame,text='           SUBMIT          ',bg="Yellow",command=submit).grid(row=1,column=4)
+
 
 # FRAME 2 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 frame1=Frame(root,bd=5,relief=RIDGE,bg="pink")

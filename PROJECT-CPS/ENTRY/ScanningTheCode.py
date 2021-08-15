@@ -2,7 +2,7 @@ from pyzbar import pyzbar
 import cv2
 
 
-def read_qrcode(frame):
+def read_qrcode(frame,l):
     qrcodes = pyzbar.decode(frame)
     
     for code in qrcodes:
@@ -19,10 +19,11 @@ def read_qrcode(frame):
         # Converting and saving the response in a text file -- 'QRcode_result.txt'
         with open("QRcode_result.txt", mode='w') as file:
             file.write("Recognized QRode:" + qrcode_info)
-            
+        
+        l.append(qrcode_info)
         print(qrcode_info)
-            
-    return frame
+
+    return frame,l
 
 
 # Driver Code -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -30,18 +31,18 @@ def main():
 
     camera = cv2.VideoCapture(0)
     ret, frame = camera.read()
-
+    l=[]
     while ret:
         ret, frame = camera.read()
-        frame = read_qrcode(frame)
+        frame,l = read_qrcode(frame,l)
         cv2.imshow('QR code reader', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & len(l)>0:
             break
 
     camera.release()
     cv2.destroyAllWindows()
-
+    
 
 if __name__ == '__main__':
     main()
